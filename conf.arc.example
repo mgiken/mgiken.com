@@ -1,0 +1,3 @@
+(= gitrepo* "https://github.com/example/blog-posts.git"
+   gitpath* "/tmp/blog-posts/"
+   hookkey* "12FBy1FFjezGCGxa5jK794SrxiT7yw9v")
