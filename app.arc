@@ -7,7 +7,7 @@
     (system:+ "git clone" (escshargs gitrepo* gitpath*))))
 
 (def git-pull ()
-  (system:+ "cd" escshargs.gitpath* ";git pull"))
+  (system:+ "cd" escshargs.gitpath* ";git pull >/dev/null"))
 
 (def update-posts (posts index)
   (= posts* posts
@@ -83,9 +83,11 @@
        (httperr 404)))
 
 ; GitHub Post-Receive Hook
-(defp /refresh
-  (when (is arg!key hookkey*)
-    (thread (refresh))))
+(defapi /refresh
+  post (if (is arg!key hookkey*)
+           (do (thread:refresh)
+               'ture)
+           'false))
 
 ; load posts -----------------------------------------------------------------
 
